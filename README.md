@@ -1,14 +1,16 @@
 # Ecommify — Diseño de Base de Datos Híbrida (PostgreSQL + MongoDB)
 
-> Proyecto académico — Maestría en Arquitectura de Software con Énfasis en Big Data
+> Proyecto académico — Maestría en Arquitectura de Software
 > Universidad de La Sabana · Mayo 2026
 
 ## Equipo
 
 | Rol | Nombre |
 |---|---|
-| Arquitecto de Datos / DBA | Fredy Pulido |
-| Ingeniero de Datos / DevOps | Juan Pérez Vivanco |
+| Arquitecto de Datos / DBA /Ingeniero de Datos / DevOps / DBA | Fredy Orlando Pulido Quintero |
+| Arquitecto de Datos / DBA /Ingeniero de Datos / DevOps | Myriam Andrea Martinez Fontecha |
+| Arquitecto de Datos / DBA /Ingeniero de Datos / DevOps | Nicolas Felipe Torres Amaya |
+| Arquitecto de Datos / DBA /Ingeniero de Datos / DevOps | Juan Francisco Javier Perez Rivero |
 
 ## Descripción del proyecto
 
@@ -71,12 +73,12 @@ Ecommify_Database_Design/
 
 ### Prerrequisitos
 
-- PostgreSQL 16+ (local Docker o Supabase free tier)
-- MongoDB 7.x (local Docker o MongoDB Atlas M0)
+- PostgreSQL 16+ (local Docker o K8s VPS o Supabase free tier)
+- MongoDB 7.x (local Docker o K8s VPS o MongoDB Atlas M0)
 - Python 3.11+ con `psycopg2-binary`, `pymongo`, `pandas`
 - Dataset Olist descargado de Kaggle en `./data/`
 
-### Setup PostgreSQL (local con Docker)
+### Setup PostgreSQL (local con Docker o K8s VPS)
 
 ```bash
 # Levantar PostgreSQL 16 con PostGIS
@@ -98,7 +100,7 @@ cd ../seed_data
 python load_olist_csv.py
 ```
 
-### Setup MongoDB (local con Docker)
+### Setup MongoDB (local con Docker o K8s VPS)
 
 ```bash
 docker run -d --name ecommify-mongo -p 27017:27017 mongo:7
