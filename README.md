@@ -30,12 +30,17 @@ Ecommify_Database_Design/
 ├── README.md
 ├── docs/
 │   ├── Documento_Tecnico_Diseno_Ecommify_APA7.docx
+│   ├── Documento_Tecnico_Diseno_Ecommify_APA7.pdf
 │   ├── Investigacion_PostgreSQL_Avanzado_APA7.docx
+│   ├── Investigacion_PostgreSQL_Avanzado_APA7.pdf
 │   ├── Presentacion_Ejecutiva_Ecommify.pptx
+│   ├── Presentacion_Ejecutiva_Ecommify.pdf
 │   ├── Diccionario_Datos_Ecommify.tsv
 │   └── diagrams/
 │       ├── er_postgresql_olist.html
+│       ├── er_postgresql_olist.svg
 │       └── er_mongodb_olist.html
+│       └── er_mongodb_olist.svg
 ├── postgresql/
 │   ├── schema/                          ← 8 scripts DDL ordenados
 │   │   ├── 01_extensions.sql
@@ -66,7 +71,7 @@ Ecommify_Database_Design/
 │           ├── pg_to_mongo_orders_summary.py
 │           └── pg_to_mongo_products_catalog.py
 └── notebooks/
-    └── 01_Data_Exploration_Analysis.ipynb
+    └── Data_Exploration_Analysis.ipynb
 ```
 
 ## Cómo empezar
