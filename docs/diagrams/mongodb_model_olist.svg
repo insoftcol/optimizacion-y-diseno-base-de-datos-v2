@@ -1,0 +1,182 @@
+<svg id="main-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1380 812" width="1380" height="812" font-family="system-ui,-apple-system,sans-serif">
+<rect x="10" y="6" width="224" height="798" rx="12" fill="#f0f4ff" stroke="#c7d7f8" stroke-width="1"></rect>
+<rect x="230" y="6" width="208" height="798" rx="12" fill="#fafafa" stroke="#e5e7eb" stroke-width="1"></rect>
+<rect x="426" y="6" width="948" height="798" rx="12" fill="#ffffff" stroke="#d1d5db" stroke-width="1"></rect>
+<text x="126" y="800" text-anchor="middle" font-size="11" font-weight="600" fill="#475569">Fuente de datos</text>
+<text x="332" y="800" text-anchor="middle" font-size="11" font-weight="600" fill="#475569">Flujo</text>
+<text x="897" y="800" text-anchor="middle" font-size="11" font-weight="600" fill="#475569">Colecciones MongoDB 7.x</text>
+<rect x="18" y="18" width="216" height="236" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"></rect>
+<text x="126" y="34" text-anchor="middle" font-size="12" font-weight="700" fill="#1d4ed8">PostgreSQL</text>
+<text x="126" y="47" text-anchor="middle" font-size="10" font-weight="400" fill="#3b82f6">→ orders_summary</text>
+<line x1="24" y1="53" x2="228" y2="53" stroke="#2563eb" stroke-width="0.7"></line>
+<text x="26" y="68" text-anchor="start" font-size="11" font-weight="400" fill="#1e3a5f">📋 orders</text>
+<text x="26" y="89" text-anchor="start" font-size="11" font-weight="400" fill="#1e3a5f">📋 order_items</text>
+<text x="26" y="110" text-anchor="start" font-size="11" font-weight="400" fill="#1e3a5f">📋 order_payments</text>
+<text x="26" y="131" text-anchor="start" font-size="11" font-weight="400" fill="#1e3a5f">📋 customers</text>
+<text x="26" y="152" text-anchor="start" font-size="11" font-weight="400" fill="#1e3a5f">   ↳ state, city</text>
+<text x="26" y="173" text-anchor="start" font-size="11" font-weight="400" fill="#1e3a5f">   ↳ zip_code_prefix</text>
+<text x="26" y="194" text-anchor="start" font-size="11" font-weight="400" fill="#1e3a5f"> </text>
+<text x="26" y="215" text-anchor="start" font-size="11" font-weight="400" fill="#1e3a5f">🔗 zip → geolocation</text>
+<line x1="238" y1="136" x2="419" y2="136" stroke="#ea580c" stroke-width="3"></line><polygon points="419,131 430,136 419,141" fill="#ea580c"></polygon>
+<text x="332" y="126" text-anchor="middle" font-size="10" font-weight="700" fill="#ea580c">ETL nightly</text>
+<text x="332" y="154" text-anchor="middle" font-size="9" font-weight="400" fill="#ea580c">batch + hourly</text>
+<text x="332" y="165" text-anchor="middle" font-size="9" font-weight="400" fill="#ea580c">incremental</text>
+<rect x="430" y="18" width="934" height="236" rx="8" fill="#fff7ed" stroke="#ea580c" stroke-width="2"></rect>
+<text x="897" y="34" text-anchor="middle" font-size="15" font-weight="700" fill="#ea580c">orders_summary</text>
+<text x="897" y="51" text-anchor="middle" font-size="10" font-weight="400" fill="#92400e">Shard key: hashed(_id)  ·  AP  ·  Consistencia eventual  ·  ETL ← PostgreSQL (JOIN 5 tablas)</text>
+<line x1="438" y1="59" x2="1356" y2="59" stroke="#ea580c" stroke-width="0.7"></line>
+<rect x="438" y="66" width="192" height="180" rx="6" fill="#dbeafe" stroke="#2563eb" stroke-width="1"></rect>
+<text x="534" y="80" text-anchor="middle" font-size="11" font-weight="700" fill="#2563eb">customer { }</text>
+<line x1="442" y1="87" x2="626" y2="87" stroke="#2563eb" stroke-width="0.6"></line>
+<text x="445" y="100" text-anchor="start" font-size="10" font-weight="400" fill="#374151">customer_id</text>
+<text x="445" y="116" text-anchor="start" font-size="10" font-weight="400" fill="#374151">state</text>
+<text x="445" y="132" text-anchor="start" font-size="10" font-weight="400" fill="#374151">city</text>
+<text x="445" y="148" text-anchor="start" font-size="10" font-weight="400" fill="#374151">zip_code_prefix</text>
+<rect x="638" y="66" width="192" height="180" rx="6" fill="#d1fae5" stroke="#059669" stroke-width="1"></rect>
+<text x="734" y="80" text-anchor="middle" font-size="11" font-weight="700" fill="#059669">items [ ]</text>
+<line x1="642" y1="87" x2="826" y2="87" stroke="#059669" stroke-width="0.6"></line>
+<text x="645" y="100" text-anchor="start" font-size="10" font-weight="400" fill="#374151">product_id</text>
+<text x="645" y="116" text-anchor="start" font-size="10" font-weight="400" fill="#374151">seller_id</text>
+<text x="645" y="132" text-anchor="start" font-size="10" font-weight="400" fill="#374151">price</text>
+<text x="645" y="148" text-anchor="start" font-size="10" font-weight="400" fill="#374151">freight_value</text>
+<rect x="838" y="66" width="192" height="180" rx="6" fill="#f3f4f6" stroke="#6b7280" stroke-width="1"></rect>
+<text x="934" y="80" text-anchor="middle" font-size="11" font-weight="700" fill="#6b7280">campos escalares</text>
+<line x1="842" y1="87" x2="1026" y2="87" stroke="#6b7280" stroke-width="0.6"></line>
+<text x="845" y="100" text-anchor="start" font-size="10" font-weight="400" fill="#374151">_id  (= order_id PG)</text>
+<text x="845" y="116" text-anchor="start" font-size="10" font-weight="400" fill="#374151">status</text>
+<text x="845" y="132" text-anchor="start" font-size="10" font-weight="400" fill="#374151">purchase_date</text>
+<text x="845" y="148" text-anchor="start" font-size="10" font-weight="400" fill="#374151">payment_total</text>
+<text x="845" y="164" text-anchor="start" font-size="10" font-weight="400" fill="#374151">review_score</text>
+<rect x="1074" y="66" width="282" height="180" rx="6" fill="#fef3c7" stroke="#d97706" stroke-width="1"></rect>
+<text x="1215" y="80" text-anchor="middle" font-size="11" font-weight="700" fill="#d97706">metadatos ETL</text>
+<line x1="1078" y1="87" x2="1352" y2="87" stroke="#d97706" stroke-width="0.6"></line>
+<text x="1081" y="100" text-anchor="start" font-size="10" font-weight="400" fill="#374151">etl_updated_at</text>
+<text x="1081" y="116" text-anchor="start" font-size="10" font-weight="400" fill="#374151">etl_source</text>
+<text x="1081" y="132" text-anchor="start" font-size="10" font-weight="400" fill="#374151">  batch + incr.</text>
+<text x="1081" y="164" text-anchor="start" font-size="10" font-weight="400" fill="#374151">→ upsert on order_id</text>
+<rect x="18" y="272" width="216" height="130" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"></rect>
+<text x="126" y="288" text-anchor="middle" font-size="12" font-weight="700" fill="#15803d">PostgreSQL</text>
+<text x="126" y="301" text-anchor="middle" font-size="10" font-weight="400" fill="#16a34a">→ products_catalog</text>
+<line x1="24" y1="307" x2="228" y2="307" stroke="#16a34a" stroke-width="0.7"></line>
+<text x="26" y="322" text-anchor="start" font-size="11" font-weight="400" fill="#14532d">📋 products</text>
+<text x="26" y="339" text-anchor="start" font-size="11" font-weight="400" fill="#14532d">📋 categories</text>
+<text x="26" y="356" text-anchor="start" font-size="11" font-weight="400" fill="#14532d">   (traducciones)</text>
+<text x="26" y="373" text-anchor="start" font-size="11" font-weight="400" fill="#14532d"> </text>
+<text x="26" y="390" text-anchor="start" font-size="11" font-weight="400" fill="#14532d">→ _id = product_id</text>
+<text x="26" y="407" text-anchor="start" font-size="11" font-weight="400" fill="#14532d">→ category embebida</text>
+<line x1="238" y1="337" x2="419" y2="337" stroke="#16a34a" stroke-width="2.5"></line><polygon points="419,332 430,337 419,342" fill="#16a34a"></polygon>
+<text x="332" y="328" text-anchor="middle" font-size="10" font-weight="700" fill="#16a34a">ETL upsert</text>
+<text x="332" y="344" text-anchor="middle" font-size="9" font-weight="400" fill="#16a34a">on change</text>
+<rect x="430" y="272" width="934" height="130" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"></rect>
+<text x="897" y="288" text-anchor="middle" font-size="14" font-weight="700" fill="#16a34a">products_catalog</text>
+<text x="897" y="302" text-anchor="middle" font-size="10" font-weight="400" fill="#15803d">_id = product_id PG  ·  category { } embebida  ·  ETL ← products + categories  ·  etl_updated_at</text>
+<line x1="438" y1="310" x2="1356" y2="310" stroke="#16a34a" stroke-width="0.7"></line>
+<text x="442" y="324" text-anchor="start" font-size="11" font-weight="600" fill="#065f46">_id</text>
+<text x="595" y="324" text-anchor="start" font-size="10" font-weight="400" fill="#374151">← product_id PG</text>
+<text x="442" y="342" text-anchor="start" font-size="11" font-weight="600" fill="#065f46">category.name_pt</text>
+<text x="595" y="342" text-anchor="start" font-size="10" font-weight="400" fill="#374151">VARCHAR</text>
+<text x="442" y="360" text-anchor="start" font-size="11" font-weight="600" fill="#065f46">category.name_en</text>
+<text x="595" y="360" text-anchor="start" font-size="10" font-weight="400" fill="#374151">VARCHAR (traducción)</text>
+<text x="442" y="378" text-anchor="start" font-size="11" font-weight="600" fill="#065f46">weight_g</text>
+<text x="595" y="378" text-anchor="start" font-size="10" font-weight="400" fill="#374151">INTEGER</text>
+<text x="900" y="324" text-anchor="start" font-size="11" font-weight="600" fill="#065f46">length_cm</text>
+<text x="1030" y="324" text-anchor="start" font-size="10" font-weight="400" fill="#374151">NUMERIC</text>
+<text x="900" y="342" text-anchor="start" font-size="11" font-weight="600" fill="#065f46">height_cm</text>
+<text x="1030" y="342" text-anchor="start" font-size="10" font-weight="400" fill="#374151">NUMERIC</text>
+<text x="900" y="360" text-anchor="start" font-size="11" font-weight="600" fill="#065f46">width_cm</text>
+<text x="1030" y="360" text-anchor="start" font-size="10" font-weight="400" fill="#374151">NUMERIC</text>
+<text x="900" y="378" text-anchor="start" font-size="11" font-weight="600" fill="#065f46">etl_updated_at</text>
+<text x="1030" y="378" text-anchor="start" font-size="10" font-weight="400" fill="#374151">DATE</text>
+<rect x="18" y="420" width="216" height="130" rx="8" fill="#f0fdfa" stroke="#0f766e" stroke-width="1.5"></rect>
+<text x="126" y="436" text-anchor="middle" font-size="12" font-weight="700" fill="#0f766e">PostgreSQL + CSV</text>
+<text x="126" y="449" text-anchor="middle" font-size="10" font-weight="400" fill="#0f766e">→ sellers_geo</text>
+<line x1="24" y1="455" x2="228" y2="455" stroke="#0f766e" stroke-width="0.7"></line>
+<text x="26" y="470" text-anchor="start" font-size="11" font-weight="400" fill="#134e4a">📋 sellers (PG)</text>
+<text x="26" y="487" text-anchor="start" font-size="11" font-weight="400" fill="#134e4a">📄 geolocation.csv</text>
+<text x="26" y="504" text-anchor="start" font-size="11" font-weight="400" fill="#134e4a">   ↳ zip → lat/lng</text>
+<text x="26" y="538" text-anchor="start" font-size="11" font-weight="400" fill="#134e4a">→ JOIN sellers+geo</text>
+<text x="26" y="555" text-anchor="start" font-size="11" font-weight="400" fill="#134e4a">→ _id = seller_id</text>
+<line x1="238" y1="485" x2="419" y2="485" stroke="#0f766e" stroke-width="2.5"></line><polygon points="419,480 430,485 419,490" fill="#0f766e"></polygon>
+<text x="332" y="476" text-anchor="middle" font-size="10" font-weight="700" fill="#0f766e">ETL join</text>
+<text x="332" y="492" text-anchor="middle" font-size="9" font-weight="400" fill="#0f766e">+ upsert</text>
+<rect x="430" y="420" width="934" height="130" rx="8" fill="#f0fdfa" stroke="#0f766e" stroke-width="1.5"></rect>
+<text x="897" y="436" text-anchor="middle" font-size="14" font-weight="700" fill="#0f766e">sellers_geo</text>
+<text x="897" y="450" text-anchor="middle" font-size="10" font-weight="400" fill="#0f766e">_id = seller_id PG  ·  location { } GeoJSON  ·  Índice 2dsphere  ·  ETL ← sellers JOIN geolocation</text>
+<line x1="438" y1="458" x2="1356" y2="458" stroke="#0f766e" stroke-width="0.7"></line>
+<text x="442" y="472" text-anchor="start" font-size="11" font-weight="600" fill="#0f766e">_id</text>
+<text x="595" y="472" text-anchor="start" font-size="10" font-weight="400" fill="#374151">← seller_id PG</text>
+<text x="442" y="490" text-anchor="start" font-size="11" font-weight="600" fill="#0f766e">zip_code_prefix</text>
+<text x="595" y="490" text-anchor="start" font-size="10" font-weight="400" fill="#374151">INTEGER</text>
+<text x="442" y="508" text-anchor="start" font-size="11" font-weight="600" fill="#0f766e">city</text>
+<text x="595" y="508" text-anchor="start" font-size="10" font-weight="400" fill="#374151">VARCHAR</text>
+<text x="442" y="526" text-anchor="start" font-size="11" font-weight="600" fill="#0f766e">state</text>
+<text x="595" y="526" text-anchor="start" font-size="10" font-weight="400" fill="#374151">CHAR(2)</text>
+<text x="900" y="472" text-anchor="start" font-size="11" font-weight="600" fill="#0f766e">location.type</text>
+<text x="1070" y="472" text-anchor="start" font-size="10" font-weight="400" fill="#374151">"Point" (GeoJSON)</text>
+<text x="900" y="490" text-anchor="start" font-size="11" font-weight="600" fill="#0f766e">location.coordinates</text>
+<text x="1070" y="490" text-anchor="start" font-size="10" font-weight="400" fill="#374151">[lng, lat]</text>
+<text x="900" y="508" text-anchor="start" font-size="11" font-weight="600" fill="#0f766e"></text>
+<text x="1070" y="508" text-anchor="start" font-size="10" font-weight="400" fill="#374151">  ↳ Índice 2dsphere</text>
+<rect x="18" y="568" width="216" height="110" rx="6 4" fill="#f9fafb" stroke="#6b7280" stroke-width="1.5"></rect>
+<text x="126" y="584" text-anchor="middle" font-size="12" font-weight="700" fill="#374151">CSV Directo</text>
+<text x="126" y="597" text-anchor="middle" font-size="10" font-weight="400" fill="#6b7280">reviews_dataset.csv</text>
+<line x1="24" y1="603" x2="228" y2="603" stroke="#6b7280" stroke-width="0.7"></line>
+<text x="26" y="618" text-anchor="start" font-size="10" font-weight="400" fill="#4b5563">100.150 registros</text>
+<text x="26" y="632" text-anchor="start" font-size="10" font-weight="400" fill="#4b5563">41.1% sin comment_msg</text>
+<text x="26" y="646" text-anchor="start" font-size="10" font-weight="400" fill="#4b5563">Sin ETL continuo</text>
+<text x="26" y="660" text-anchor="start" font-size="10" font-weight="400" fill="#4b5563">Carga única inicial</text>
+<line x1="238" y1="623" x2="419" y2="623" stroke="#6b7280" stroke-width="2" stroke-dasharray="6 3"></line><polygon points="419,618 430,623 419,628" fill="#6b7280"></polygon>
+<text x="332" y="614" text-anchor="middle" font-size="10" font-weight="700" fill="#6b7280">CSV inicial</text>
+<text x="332" y="630" text-anchor="middle" font-size="9" font-weight="400" fill="#6b7280">sin ETL</text>
+<rect x="430" y="568" width="934" height="110" rx="8" fill="#faf5ff" stroke="#7c3aed" stroke-width="1.5"></rect>
+<text x="897" y="584" text-anchor="middle" font-size="14" font-weight="700" fill="#7c3aed">reviews</text>
+<text x="897" y="598" text-anchor="middle" font-size="10" font-weight="400" fill="#5b21b6">Esquema flexible  ·  Sin FK nativa  ·  order_id = referencia lógica a PostgreSQL  ·  ? = campo opcional</text>
+<line x1="438" y1="606" x2="1356" y2="606" stroke="#7c3aed" stroke-width="0.7"></line>
+<text x="442" y="620" text-anchor="start" font-size="11" font-weight="600" fill="#6d28d9">_id</text>
+<text x="595" y="620" text-anchor="start" font-size="10" font-weight="400" fill="#374151">ObjectId auto</text>
+<text x="442" y="635" text-anchor="start" font-size="11" font-weight="600" fill="#6d28d9">review_id</text>
+<text x="595" y="635" text-anchor="start" font-size="10" font-weight="400" fill="#374151">String (UUID)</text>
+<text x="442" y="650" text-anchor="start" font-size="11" font-weight="600" fill="#6d28d9">order_id ⇢ PG</text>
+<text x="595" y="650" text-anchor="start" font-size="10" font-weight="400" fill="#374151">String (ref lógica)</text>
+<text x="442" y="665" text-anchor="start" font-size="11" font-weight="600" fill="#6d28d9">review_score</text>
+<text x="595" y="665" text-anchor="start" font-size="10" font-weight="400" fill="#374151">Int32  1-5 ⭐</text>
+<text x="900" y="620" text-anchor="start" font-size="11" font-weight="600" fill="#6d28d9">comment_title ?</text>
+<text x="1080" y="620" text-anchor="start" font-size="10" font-weight="400" fill="#374151">String (opcional)</text>
+<text x="900" y="635" text-anchor="start" font-size="11" font-weight="600" fill="#6d28d9">comment_msg ?</text>
+<text x="1080" y="635" text-anchor="start" font-size="10" font-weight="400" fill="#374151">String (41.1% ausente)</text>
+<text x="900" y="650" text-anchor="start" font-size="11" font-weight="600" fill="#6d28d9">creation_date</text>
+<text x="1080" y="650" text-anchor="start" font-size="10" font-weight="400" fill="#374151">Date</text>
+<text x="900" y="665" text-anchor="start" font-size="11" font-weight="600" fill="#6d28d9">answer_ts</text>
+<text x="1080" y="665" text-anchor="start" font-size="10" font-weight="400" fill="#374151">Date (opcional)</text>
+<rect x="18" y="696" width="216" height="108" rx="6 4" fill="#f9fafb" stroke="#6b7280" stroke-width="1.5"></rect>
+<text x="126" y="712" text-anchor="middle" font-size="12" font-weight="700" fill="#374151">CSV Directo</text>
+<text x="126" y="725" text-anchor="middle" font-size="10" font-weight="400" fill="#6b7280">geolocation_dataset.csv</text>
+<line x1="24" y1="731" x2="228" y2="731" stroke="#6b7280" stroke-width="0.7"></line>
+<text x="26" y="746" text-anchor="start" font-size="10" font-weight="400" fill="#4b5563">1.000.163 registros</text>
+<text x="26" y="760" text-anchor="start" font-size="10" font-weight="400" fill="#4b5563">zip_code_prefix (PK)</text>
+<text x="26" y="774" text-anchor="start" font-size="10" font-weight="400" fill="#4b5563">Deduplica por zip</text>
+<text x="26" y="788" text-anchor="start" font-size="10" font-weight="400" fill="#4b5563">Carga única inicial</text>
+<line x1="238" y1="750" x2="419" y2="750" stroke="#6b7280" stroke-width="2" stroke-dasharray="6 3"></line><polygon points="419,745 430,750 419,755" fill="#6b7280"></polygon>
+<text x="332" y="741" text-anchor="middle" font-size="10" font-weight="700" fill="#6b7280">CSV inicial</text>
+<text x="332" y="757" text-anchor="middle" font-size="9" font-weight="400" fill="#6b7280">sin ETL</text>
+<rect x="430" y="696" width="934" height="108" rx="8" fill="#ecfeff" stroke="#0891b2" stroke-width="1.5"></rect>
+<text x="897" y="712" text-anchor="middle" font-size="14" font-weight="700" fill="#0891b2">geolocation</text>
+<text x="897" y="726" text-anchor="middle" font-size="10" font-weight="400" fill="#0e7490">Índice 2dsphere nativo  ·  zip_code_prefix como clave única  ·  GeoJSON Point  ·  Consultas near / geoWithin</text>
+<line x1="438" y1="734" x2="1356" y2="734" stroke="#0891b2" stroke-width="0.7"></line>
+<text x="442" y="748" text-anchor="start" font-size="11" font-weight="600" fill="#0891b2">_id</text>
+<text x="595" y="748" text-anchor="start" font-size="10" font-weight="400" fill="#374151">ObjectId auto</text>
+<text x="442" y="763" text-anchor="start" font-size="11" font-weight="600" fill="#0891b2">zip_code_prefix</text>
+<text x="595" y="763" text-anchor="start" font-size="10" font-weight="400" fill="#374151">Int32 (PK / UNIQUE)</text>
+<text x="442" y="778" text-anchor="start" font-size="11" font-weight="600" fill="#0891b2">city</text>
+<text x="595" y="778" text-anchor="start" font-size="10" font-weight="400" fill="#374151">String</text>
+<text x="442" y="793" text-anchor="start" font-size="11" font-weight="600" fill="#0891b2">state</text>
+<text x="595" y="793" text-anchor="start" font-size="10" font-weight="400" fill="#374151">String CHAR(2)</text>
+<text x="900" y="748" text-anchor="start" font-size="11" font-weight="600" fill="#0891b2">location.type</text>
+<text x="1070" y="748" text-anchor="start" font-size="10" font-weight="400" fill="#374151">"Point" (GeoJSON)</text>
+<text x="900" y="763" text-anchor="start" font-size="11" font-weight="600" fill="#0891b2">location.coordinates</text>
+<text x="1070" y="763" text-anchor="start" font-size="10" font-weight="400" fill="#374151">[lng, lat] Double</text>
+<text x="900" y="778" text-anchor="start" font-size="11" font-weight="600" fill="#0891b2"></text>
+<text x="1070" y="778" text-anchor="start" font-size="10" font-weight="400" fill="#374151">  ↳ Índice 2dsphere</text>
+<text x="900" y="793" text-anchor="start" font-size="11" font-weight="600" fill="#0891b2"></text>
+<text x="1070" y="793" text-anchor="start" font-size="10" font-weight="400" fill="#374151">  ↳ near, geoWithin</text>
+</svg>
