@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Diagrama ER — PostgreSQL 16 · Olist</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:#f0f4f8;color:#1e293b}
+header{background:linear-gradient(135deg,#1e3a8a,#1d4ed8);color:#fff;padding:18px 28px;display:flex;justify-content:space-between;align-items:center}
+header h1{font-size:20px;font-weight:700}
+header p{font-size:12px;opacity:.8;margin-top:3px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;padding:10px 28px;background:#fff;border-bottom:1px solid #e2e8f0;font-size:12px;color:#475569;align-items:center}
+.li{display:flex;align-items:center;gap:5px}
+.dot{width:12px;height:12px;border-radius:3px;border:2px solid;flex-shrink:0}
+.toolbar{background:#fff;border-bottom:1px solid #e2e8f0;padding:8px 28px;display:flex;gap:8px;align-items:center}
+.btn{padding:6px 16px;border-radius:8px;border:1px solid #cbd5e1;background:#fff;cursor:pointer;font-size:13px;font-weight:500;color:#374151;transition:all .15s}
+.btn:hover{background:#f8fafc}
+.btn-blue{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
+.btn-blue:hover{background:#1e40af}
+.wrap{overflow:auto;padding:28px;min-height:70vh;background:#f0f4f8}
+.mermaid{background:#fff;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,.10);padding:24px;display:inline-block;min-width:820px;transform-origin:top left;transition:transform .2s}
+details{margin:0 28px 16px}
+summary{cursor:pointer;font-size:14px;font-weight:600;padding:12px 0;color:#1d4ed8;user-select:none}
+summary:hover{color:#1e40af}
+.edit-area{background:#1e293b;border-radius:10px;padding:20px;margin-top:8px}
+textarea{width:100%;height:460px;font-family:'Courier New',monospace;font-size:12.5px;background:#0f172a;color:#e2e8f0;border:1px solid #334155;border-radius:8px;padding:14px;resize:vertical;line-height:1.5}
+.update-btn{margin-top:10px}
+.card-info{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:16px 28px;background:#fff;border-top:1px solid #e2e8f0}
+.card{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:12px;font-size:12px}
+.card h3{font-size:13px;font-weight:600;margin-bottom:6px;color:#1e3a8a}
+.card p{color:#475569;line-height:1.5}
+footer{text-align:center;font-size:11px;color:#94a3b8;padding:12px}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>Diagrama Entidad-Relación — PostgreSQL 16</h1>
+    <p>Dataset Brazilian E-Commerce · Olist 2018 · 9 tablas · 1.15 M registros · Notación crow&apos;s foot</p>
+  </div>
+  <div style="display:flex;gap:8px">
+    <button class="btn btn-blue" onclick="downloadSVG()">⬇ SVG</button>
+    <button class="btn" style="color:#fff;background:#475569;border-color:#475569" onclick="zoomIn()">＋</button>
+    <button class="btn" style="color:#fff;background:#475569;border-color:#475569" onclick="zoomOut()">－</button>
+    <button class="btn" onclick="resetZoom()">↺ Reset</button>
+  </div>
+</header>
+
+<div class="legend">
+  <span style="font-weight:600">Leyenda:</span>
+  <span class="li"><span class="dot" style="background:#fef9c3;border-color:#ca8a04"></span>ORDERS — Tabla de hechos</span>
+  <span class="li"><span class="dot" style="background:#dbeafe;border-color:#1d4ed8"></span>Dimensiones (CUSTOMERS, SELLERS, PRODUCTS)</span>
+  <span class="li"><span class="dot" style="background:#dcfce7;border-color:#16a34a"></span>Detalle/Transacción (ORDER_ITEMS, PAYMENTS, REVIEWS)</span>
+  <span class="li"><span class="dot" style="background:#f3e5f5;border-color:#7c3aed"></span>Referencia (GEOLOCATION, CATEGORIES)</span>
+  <span>·</span>
+  <span>PK = Clave Primaria · FK = Clave Foránea</span>
+  <span>·</span>
+  <span>||--o&#123; = uno a cero-o-muchos · ||--|&#123; = uno a uno-o-muchos</span>
+</div>
+
+<div class="toolbar">
+  <button class="btn btn-blue" onclick="downloadSVG()">⬇ Descargar SVG</button>
+  <button class="btn" onclick="zoomIn()">Zoom +</button>
+  <button class="btn" onclick="zoomOut()">Zoom −</button>
+  <button class="btn" onclick="resetZoom()">Restablecer zoom</button>
+  <span style="font-size:12px;color:#64748b;margin-left:8px">💡 Usa la rueda del mouse para hacer zoom · Arrastra para desplazar</span>
+</div>
+
+<div class="wrap" id="wrap">
+  <div class="mermaid" id="diagram">
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "primaryColor": "#dbeafe",
+    "primaryBorderColor": "#1d4ed8",
+    "primaryTextColor": "#1e3a5f",
+    "secondaryColor": "#fef9c3",
+    "secondaryBorderColor": "#ca8a04",
+    "tertiaryColor": "#dcfce7",
+    "tertiaryBorderColor": "#16a34a",
+    "fontFamily": "system-ui, -apple-system, sans-serif",
+    "fontSize": "14px",
+    "lineColor": "#475569",
+    "edgeLabelBackground": "#f8fafc",
+    "attributeBackgroundColorOdd": "#ffffff",
+    "attributeBackgroundColorEven": "#f0f9ff"
+  },
+  "er": { "diagramPadding": 40, "entityPadding": 18, "useMaxWidth": false }
+}}%%
+erDiagram
+  CUSTOMERS ||--o{ ORDERS : realiza
+  ORDERS ||--|{ ORDER_ITEMS : contiene
+  ORDERS ||--o{ ORDER_PAYMENTS : paga
+  ORDERS ||--o{ ORDER_REVIEWS : evalua
+  PRODUCTS ||--o{ ORDER_ITEMS : compone
+  SELLERS ||--o{ ORDER_ITEMS : vende
+  CATEGORIES ||--o{ PRODUCTS : clasifica
+  GEOLOCATION ||--o{ CUSTOMERS : ubica
+  GEOLOCATION ||--o{ SELLERS : situa
+
+  CUSTOMERS {
+    uuid    customer_id        PK
+    uuid    customer_unique_id
+    int     zip_code_prefix    FK
+    varchar city
+    char    state
+  }
+  ORDERS {
+    uuid        order_id          PK
+    uuid        customer_id       FK
+    varchar     status
+    timestamptz purchase_ts
+    timestamptz approved_at
+    timestamptz delivered_date
+    timestamptz estimated_delivery
+  }
+  ORDER_ITEMS {
+    uuid     order_id    FK
+    smallint item_id
+    uuid     product_id  FK
+    uuid     seller_id   FK
+    numeric  price
+    numeric  freight
+  }
+  ORDER_PAYMENTS {
+    uuid     order_id     FK
+    smallint pay_seq
+    varchar  payment_type
+    smallint installments
+    numeric  pay_value
+  }
+  ORDER_REVIEWS {
+    uuid        review_id  PK
+    uuid        order_id   FK
+    smallint    score
+    varchar     comment_title
+    text        comment_msg
+    timestamptz created_at
+  }
+  PRODUCTS {
+    uuid     product_id    PK
+    varchar  category_name FK
+    int      weight_g
+    numeric  length_cm
+    numeric  height_cm
+    numeric  width_cm
+    smallint photos_qty
+  }
+  SELLERS {
+    uuid    seller_id       PK
+    int     zip_code_prefix FK
+    varchar city
+    char    state
+  }
+  GEOLOCATION {
+    int     zip_code_prefix PK
+    double  lat
+    double  lng
+    varchar city
+    char    state
+  }
+  CATEGORIES {
+    varchar category_name PK
+    varchar name_english
+  }
+  </div>
+</div>
+
+<div class="card-info">
+  <div class="card">
+    <h3>📊 Estadísticas del Dataset</h3>
+    <p>• 99.441 orders · 112.650 order_items<br>• 103.886 payments · 100.150 reviews<br>• 32.951 products · 3.095 sellers<br>• 1.000.163 geolocation records</p>
+  </div>
+  <div class="card">
+    <h3>🔑 Claves y Relaciones</h3>
+    <p>• 9 tablas con integridad referencial 100%<br>• PKs: UUID (gen_random_uuid())<br>• FK con ON DELETE RESTRICT<br>• Particionamiento RANGE en orders</p>
+  </div>
+  <div class="card">
+    <h3>📐 Posición CAP</h3>
+    <p>• CP — Consistencia + Tolerancia<br>• Replicación streaming síncrona<br>• ACID completo (PostgreSQL 16)<br>• Partition pruning automático</p>
+  </div>
+</div>
+
+<details>
+  <summary>✏ Editar definición del diagrama (Mermaid JS)</summary>
+  <div class="edit-area">
+    <textarea id="definition">%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "primaryColor": "#dbeafe",
+    "primaryBorderColor": "#1d4ed8",
+    "primaryTextColor": "#1e3a5f",
+    "secondaryColor": "#fef9c3",
+    "secondaryBorderColor": "#ca8a04",
+    "tertiaryColor": "#dcfce7",
+    "tertiaryBorderColor": "#16a34a",
+    "fontFamily": "system-ui, -apple-system, sans-serif",
+    "fontSize": "14px",
+    "lineColor": "#475569",
+    "edgeLabelBackground": "#f8fafc",
+    "attributeBackgroundColorOdd": "#ffffff",
+    "attributeBackgroundColorEven": "#f0f9ff"
+  },
+  "er": { "diagramPadding": 40, "entityPadding": 18, "useMaxWidth": false }
+}}%%
+erDiagram
+  CUSTOMERS ||--o{ ORDERS : realiza
+  ORDERS ||--|{ ORDER_ITEMS : contiene
+  ORDERS ||--o{ ORDER_PAYMENTS : paga
+  ORDERS ||--o{ ORDER_REVIEWS : evalua
+  PRODUCTS ||--o{ ORDER_ITEMS : compone
+  SELLERS ||--o{ ORDER_ITEMS : vende
+  CATEGORIES ||--o{ PRODUCTS : clasifica
+  GEOLOCATION ||--o{ CUSTOMERS : ubica
+  GEOLOCATION ||--o{ SELLERS : situa
+
+  CUSTOMERS {
+    uuid    customer_id        PK
+    uuid    customer_unique_id
+    int     zip_code_prefix    FK
+    varchar city
+    char    state
+  }
+  ORDERS {
+    uuid        order_id          PK
+    uuid        customer_id       FK
+    varchar     status
+    timestamptz purchase_ts
+    timestamptz approved_at
+    timestamptz delivered_date
+    timestamptz estimated_delivery
+  }
+  ORDER_ITEMS {
+    uuid     order_id    FK
+    smallint item_id
+    uuid     product_id  FK
+    uuid     seller_id   FK
+    numeric  price
+    numeric  freight
+  }
+  ORDER_PAYMENTS {
+    uuid     order_id     FK
+    smallint pay_seq
+    varchar  payment_type
+    smallint installments
+    numeric  pay_value
+  }
+  ORDER_REVIEWS {
+    uuid        review_id  PK
+    uuid        order_id   FK
+    smallint    score
+    varchar     comment_title
+    text        comment_msg
+    timestamptz created_at
+  }
+  PRODUCTS {
+    uuid     product_id    PK
+    varchar  category_name FK
+    int      weight_g
+    numeric  length_cm
+    numeric  height_cm
+    numeric  width_cm
+    smallint photos_qty
+  }
+  SELLERS {
+    uuid    seller_id       PK
+    int     zip_code_prefix FK
+    varchar city
+    char    state
+  }
+  GEOLOCATION {
+    int     zip_code_prefix PK
+    double  lat
+    double  lng
+    varchar city
+    char    state
+  }
+  CATEGORIES {
+    varchar category_name PK
+    varchar name_english
+  }</textarea>
+    <button class="btn btn-blue update-btn" onclick="rerender()">▶ Actualizar diagrama</button>
+  </div>
+</details>
+
+<footer>Diagrama ER · PostgreSQL 16 · Dataset Olist 2018 · Universidad de La Sabana 2026 · Generado con Mermaid JS</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>
+mermaid.initialize({ startOnLoad:true, securityLevel:'loose' });
+
+let z=1;
+function applyZ(){
+  const d=document.getElementById('diagram');
+  d.style.transform=`scale(${z})`;
+  d.style.transformOrigin='top left';
+}
+function zoomIn(){z=Math.min(z+.15,4);applyZ();}
+function zoomOut(){z=Math.max(z-.15,.25);applyZ();}
+function resetZoom(){z=1;applyZ();}
+
+document.getElementById('wrap').addEventListener('wheel',e=>{
+  e.preventDefault();
+  e.deltaY<0?zoomIn():zoomOut();
+},{passive:false});
+
+let isDragging=false,startX,startY,scrollL,scrollT;
+const wrap=document.getElementById('wrap');
+wrap.addEventListener('mousedown',e=>{isDragging=true;startX=e.pageX-wrap.offsetLeft;startY=e.pageY-wrap.offsetTop;scrollL=wrap.scrollLeft;scrollT=wrap.scrollTop;wrap.style.cursor='grabbing';});
+wrap.addEventListener('mouseleave',()=>{isDragging=false;wrap.style.cursor='';});
+wrap.addEventListener('mouseup',()=>{isDragging=false;wrap.style.cursor='';});
+wrap.addEventListener('mousemove',e=>{if(!isDragging)return;e.preventDefault();const x=e.pageX-wrap.offsetLeft;const y=e.pageY-wrap.offsetTop;wrap.scrollLeft=scrollL-(x-startX);wrap.scrollTop=scrollT-(y-startY);});
+
+async function rerender(){
+  const def=document.getElementById('definition').value;
+  const el=document.getElementById('diagram');
+  el.removeAttribute('data-processed');
+  el.innerHTML=def;
+  await mermaid.run({nodes:[el]});
+  applyZ();
+}
+
+function downloadSVG(){
+  const svg=document.querySelector('#diagram svg');
+  if(!svg){alert('El diagrama aún está cargando.');return;}
+  const blob=new Blob([svg.outerHTML],{type:'image/svg+xml'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='er_postgresql_olist.svg';
+  a.click();
+}
+</script>
+</body>
+</html>

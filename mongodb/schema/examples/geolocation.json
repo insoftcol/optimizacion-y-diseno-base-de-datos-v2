@@ -1,0 +1,10 @@
+{
+  "_id": "ObjectId('665a3f9e8c8c1d0001a2b3c5')",
+  "zip_code_prefix": 1310,
+  "city": "São Paulo",
+  "state": "SP",
+  "location": {
+    "type": "Point",
+    "coordinates": [-46.6333, -23.5505]
+  }
+}

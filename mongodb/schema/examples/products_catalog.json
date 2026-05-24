@@ -1,0 +1,15 @@
+{
+  "_id": "1e9e8ff04a05e6c1cd816ad44f3f5e2c",
+  "category": {
+    "name_pt": "moveis_decoracao",
+    "name_en": "furniture_decor"
+  },
+  "weight_g": 1200,
+  "length_cm": 30.5,
+  "height_cm": 15.0,
+  "width_cm": 20.0,
+  "photos_qty": 4,
+  "name_length": 47,
+  "description_length": 312,
+  "etl_updated_at": "2026-05-23T03:00:00Z"
+}

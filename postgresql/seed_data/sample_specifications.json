@@ -1,0 +1,65 @@
+{
+  "_comment": "Specifications JSONB de muestra por categoría — Ecommify",
+  "_uso": "Cargado por load_olist_csv.py para poblar products.specifications",
+  "informatica_acessorios": {
+    "interface": "USB-C",
+    "compatibility": ["Windows", "macOS", "Linux"],
+    "warranty_months": 12
+  },
+  "telefonia": {
+    "screen_inches": 6.1, "battery_mah": 4500, "ram_gb": 6,
+    "storage_gb": 128, "operating_system": "Android"
+  },
+  "eletronicos": {
+    "voltage": "127V/220V bivolt", "power_watts": 1200,
+    "warranty_months": 24, "energy_label": "A"
+  },
+  "esporte_lazer": {
+    "material": "polyester", "weight_kg": 0.5,
+    "sizes_available": ["P", "M", "G", "GG"]
+  },
+  "moveis_decoracao": {
+    "material": "MDF", "color": "branco",
+    "dimensions_cm": {"width": 120, "depth": 40, "height": 75},
+    "assembly_required": true
+  },
+  "beleza_saude": {
+    "volume_ml": 200, "skin_type": ["normal", "mixta", "oleosa"],
+    "vegan": false, "expiration_months_from_manufacture": 24
+  },
+  "automotivo": {
+    "compatibility_brands": ["Ford", "Chevrolet", "Volkswagen"],
+    "weight_kg": 1.2, "warranty_months": 12, "fitment": "universal"
+  },
+  "moda_calcados": {
+    "material": "couro sintético",
+    "sizes_available": [36, 37, 38, 39, 40, 41, 42],
+    "color": "preto", "season": "all"
+  },
+  "brinquedos": {
+    "age_min_years": 3, "age_max_years": 8,
+    "material": "plástico ABS", "battery_required": false
+  },
+  "ferramentas_jardim": {
+    "power_source": "battery", "voltage": "18V",
+    "weight_kg": 2.4, "warranty_months": 12
+  },
+  "casa_decoracao": {
+    "material": "cerámica", "color_options": ["bianco", "preto", "azul"],
+    "weight_kg": 0.8, "dimensions_cm": {"diameter": 25, "height": 15}
+  },
+  "livros_interesse_geral": {
+    "pages": 320, "language": "português",
+    "publisher": "Companhia das Letras", "format": "paperback"
+  },
+  "alimentos_bebidas": {
+    "weight_g": 500, "is_organic": true, "expiration_months": 12
+  },
+  "papelaria": {
+    "pages": 96, "paper_weight_gsm": 75, "binding": "espiral", "size_cm": "A5"
+  },
+  "construcao_ferramentas_jardim": {
+    "voltage": "220V", "power_watts": 800, "weight_kg": 3.5,
+    "warranty_months": 24, "noise_db": 78
+  }
+}

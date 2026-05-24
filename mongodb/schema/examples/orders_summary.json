@@ -1,0 +1,28 @@
+{
+  "_id": "a548910a1c6147796b98fdf73dbeba33",
+  "status": "delivered",
+  "purchase_date": "2018-07-15T11:20:00Z",
+  "customer": {
+    "customer_id": "861eff4711a542e4b93843c6dd7febb0",
+    "state": "SP",
+    "city": "São Paulo"
+  },
+  "items": [
+    {
+      "product_id": "1e9e8ff04a05e6c1cd816ad44f3f5e2c",
+      "seller_id": "9d7a1d34a50504da39d1930a4fe5fc35",
+      "price": 89.90,
+      "freight_value": 12.50
+    },
+    {
+      "product_id": "3c5e7d8a91b04c7891ad6b3e4f2a8c5d",
+      "seller_id": "9d7a1d34a50504da39d1930a4fe5fc35",
+      "price": 45.00,
+      "freight_value": 0.00
+    }
+  ],
+  "payment_total": 147.40,
+  "payment_type_main": "credit_card",
+  "review_score": 4,
+  "etl_updated_at": "2026-05-23T03:15:00Z"
+}
