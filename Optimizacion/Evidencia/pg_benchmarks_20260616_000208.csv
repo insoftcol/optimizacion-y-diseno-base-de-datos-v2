@@ -1,0 +1,6 @@
+query,ANTES,DESPUES,mejora_x,mejora_pct
+Q1_rango_fecha,0.4,0.2,1.96,48.87
+Q2_join_oltp,601.67,156.86,3.84,73.93
+Q3_postgis,134.52,8.21,16.38,93.9
+Q4_trgm,86.7,8.96,9.68,89.67
+Q5_mv_ventas,0.8,0.52,1.54,35.16

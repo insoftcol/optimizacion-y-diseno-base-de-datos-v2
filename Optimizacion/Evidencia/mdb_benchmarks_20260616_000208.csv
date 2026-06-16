@@ -1,0 +1,4 @@
+query,ANTES,DESPUES,mejora_ratio
+Q1_score,1.73,1.0,1.73
+Q2_estado,1.0,1.0,1.0
+Q3_geo,999.0,1.0,999.0
