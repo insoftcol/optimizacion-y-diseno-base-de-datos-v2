@@ -3,7 +3,7 @@
 > Proyecto académico — Maestría en Arquitectura de Software
 > Universidad de La Sabana · Mayo 2026
 
-## Equipo
+## Equipo E11
 
 | Rol | Nombre |
 |---|---|
@@ -16,12 +16,10 @@
 
 Ecommify es una plataforma de comercio electrónico modelada sobre el dataset Brazilian E-Commerce de Olist (2016-2018, 99.441 órdenes, 1.15 M registros geoespaciales). El proyecto implementa una arquitectura de **persistencia políglota híbrida**:
 
-- **PostgreSQL 16 (CP)** — Núcleo transaccional ACID. Datos financieros, identidades de cliente/vendedor, catálogo de productos. Particionamiento RANGE anual sobre `orders`. Vistas materializadas para dashboards OLAP.
-- **MongoDB 7.x (AP)** — Esquema flexible y datos geoespaciales. Reseñas (41,1 % campos opcionales), geolocalización (1 M+ coords con índice 2dsphere), proyección analítica `orders_summary` alimentada por ETL.
-
-## Decisión de alcance — Geolocalización
-
-En esta fase inicial, **la entidad `sellers` NO mantiene FK con `geolocation`**. La geolocalización aplica únicamente a `customers` para cálculo de costos de envío cliente↔depósito. Esta decisión simplifica el modelo y se revisará en fases posteriores.
+- - **PostgreSQL / Supabase** como motor relacional transaccional, con integridad referencial, particionamiento, PostGIS, pg_trgm, JSONB, arreglos, vistas materializadas e índices especializados.
+- **MongoDB / Atlas** como motor documental para consultas flexibles, reseñas, geolocalización y proyecciones analíticas optimizadas mediante índices simples, compuestos, textuales y geoespaciales.
+- **Google Colab** como entorno de carga, ETL, ejecución de benchmarks y generación de evidencias.
+- **Evidencias cuantitativas** mediante `EXPLAIN ANALYZE`, `.explain()`, CSV de métricas, JSON de planes y gráficas comparativas.
 
 ## Estructura del repositorio
 
@@ -70,72 +68,40 @@ Ecommify_Database_Design/
 │       └── etl/
 │           ├── pg_to_mongo_orders_summary.py
 │           └── pg_to_mongo_products_catalog.py
-└── notebooks/
-    └── Data_Exploration_Analysis.ipynb
+├── notebooks/
+|    └── Data_Exploration_Analysis.ipynb
+├── Optimizacion/
+|   └── Evidencia/
+│   |    ├── benchmark_comparison_20260616_000208.png
+│   |    ├── pg_benchmarks_20260616_000208.csv
+│   |    ├── mdb_benchmarks_20260616_000208.csv
+│   |    └── explain_plans_20260616_000208.json
+|   |
+|   ├──Colab/
+│   |   ├── 01_pg_supabase_setup.ipynb
+│   |   ├── 02_olist_data_load.ipynb
+│   |   ├── 03_benchmarks_evidencias.ipynb
+│   |   └── 04_etl_pg_to_mongo.ipynb
+|   |
+│   ├── Documento_tecnico_Ecommify_U5.docx
+│   └── Documento_tecnico_Ecommify_U5.pdf
 ```
 
 ## Cómo empezar
 
 ### Prerrequisitos
 
-- PostgreSQL 16+ (local Docker o K8s VPS o Supabase free tier)
-- MongoDB 7.x (local Docker o K8s VPS o MongoDB Atlas M0)
+- Cuenta supabase.com Free Tier
+- Cuenta MongoDB atlas (https://cloud.mongodb.com/) Free Tier Atlas M)
 - Python 3.11+ con `psycopg2-binary`, `pymongo`, `pandas`
-- Dataset Olist descargado de Kaggle en `./data/`
-
-### Setup PostgreSQL (local con Docker o K8s VPS)
-
-```bash
-# Levantar PostgreSQL 16 con PostGIS
-docker run -d --name ecommify-pg \
-  -e POSTGRES_USER=ecommify -e POSTGRES_PASSWORD=ecommify \
-  -e POSTGRES_DB=ecommify \
-  -p 5432:5432 \
-  postgis/postgis:16-3.4
-
-# Aplicar scripts DDL en orden
-cd postgresql/schema
-for f in 0*.sql; do
-  echo "Aplicando $f..."
-  psql -h localhost -U ecommify -d ecommify -f "$f"
-done
-
-# Cargar datos desde CSV
-cd ../seed_data
-python load_olist_csv.py
-```
-
-### Setup MongoDB (local con Docker o K8s VPS)
-
-```bash
-docker run -d --name ecommify-mongo -p 27017:27017 mongo:7
-
-# Crear colecciones e índices
-mongosh "mongodb://localhost:27017/ecommify" mongodb/schema/01_collections.js
-mongosh "mongodb://localhost:27017/ecommify" mongodb/schema/02_indexes.js
-
-# Ejecutar ETL PG → MongoDB
-python mongodb/schema/etl/pg_to_mongo_orders_summary.py --full
-python mongodb/schema/etl/pg_to_mongo_products_catalog.py --full
-```
-
-## Configuración para Mac mini M4
-
-El proyecto está optimizado para correr en Mac mini M4 (arm64). Imágenes recomendadas:
-
-| Servicio | Imagen ARM | Comando |
-|---|---|---|
-| PostgreSQL + PostGIS | `postgis/postgis:16-3.4` | nativa arm64 |
-| MongoDB | `mongo:7` | nativa arm64 |
-| pgAdmin | `dpage/pgadmin4:latest` | nativa arm64 |
-| mongo-express | `mongo-express:latest` | nativa arm64 |
+- Dataset Olist descargado desde Drive google `./content/Drive`
 
 ## Resumen de decisiones arquitectónicas
 
 | Aspecto | Decisión | Justificación |
 |---|---|---|
-| Motor transaccional | PostgreSQL 16 (CP) | ACID estricto requerido para pagos y órdenes |
-| Motor flexible | MongoDB 7.x (AP) | 41,1 % nulos en `review_comment_message` justifica esquema flexible |
+| Motor transaccional | PostgreSQL Supabase Free tier | ACID estricto requerido para pagos y órdenes |
+| Motor flexible | MongoDB Atlas M0 Free tier | 41,1 % nulos en `review_comment_message` justifica esquema flexible |
 | Posición CAP `orders` | CP | Una orden duplicada es un error financiero |
 | Posición CAP `reviews` | AP | Una reseña con 30 s de retraso no es un error |
 | Particionamiento | RANGE anual en `orders` | 95 % de datos concentrados en 2017-2018 |
@@ -154,6 +120,7 @@ El proyecto está optimizado para correr en Mac mini M4 (arm64). Imágenes recom
 | Diccionario de Datos | `docs/Diccionario_Datos_Ecommify.tsv` | 14 entidades, 144 campos |
 | Diagrama ER PostgreSQL | `docs/diagrams/er_postgresql_olist.html` | Interactivo con mermaid.js |
 | Diagrama MongoDB | `docs/diagrams/er_mongodb_olist.html` | Modelo documental con ETL |
+| Documento Técnico optimizacion | `Optimizacion/Documento_tecnico_Ecommify_U5.pdf` | explicacion tecnica de la implementacion y optimizacion realizada|
 
 ## Referencias
 
