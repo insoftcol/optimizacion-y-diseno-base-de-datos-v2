@@ -1,0 +1,7 @@
+concurrency,throughput_ops_s,p50_ms,p95_ms,p99_ms,errors,total_ops,motor,subconjunto
+10,1.9,8645.74,9867.09,9994.73,0,19,PostgreSQL,A_2016
+10,57.3,174.95,182.47,192.38,0,573,MongoDB,A_2016
+10,1.9,8568.39,10149.87,10276.73,0,19,PostgreSQL,B_2016_2017
+10,8.2,1297.3,1566.23,1584.93,0,82,MongoDB,B_2016_2017
+10,1.8,8721.64,10166.14,10805.7,0,18,PostgreSQL,C_completo
+10,4.0,3173.45,3364.8,3406.93,0,40,MongoDB,C_completo

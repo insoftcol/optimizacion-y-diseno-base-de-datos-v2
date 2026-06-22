@@ -1,0 +1,5 @@
+concurrency,razon,motor,tipo_query
+5.0,p95 > 3x baseline (1580ms),PostgreSQL,punto
+10.0,p95 > 3x baseline (4996ms),PostgreSQL,compleja
+,sin degradacion significativa en el rango probado,MongoDB,punto
+20.0,p95 > 3x baseline (938ms),MongoDB,compleja

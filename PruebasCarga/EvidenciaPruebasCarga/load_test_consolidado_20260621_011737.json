@@ -1,0 +1,389 @@
+{
+  "timestamp": "20260621_011737",
+  "concurrencia": [
+    {
+      "concurrency": 1,
+      "throughput_ops_s": 2.0,
+      "p50_ms": 521.28,
+      "p95_ms": 526.56,
+      "p99_ms": 530.42,
+      "errors": 0,
+      "total_ops": 20,
+      "motor": "PostgreSQL",
+      "tipo_query": "punto"
+    },
+    {
+      "concurrency": 5,
+      "throughput_ops_s": 3.5,
+      "p50_ms": 1569.33,
+      "p95_ms": 3725.92,
+      "p99_ms": 3845.81,
+      "errors": 0,
+      "total_ops": 35,
+      "motor": "PostgreSQL",
+      "tipo_query": "punto"
+    },
+    {
+      "concurrency": 10,
+      "throughput_ops_s": 2.2,
+      "p50_ms": 1643.92,
+      "p95_ms": 9978.0,
+      "p99_ms": 10129.05,
+      "errors": 0,
+      "total_ops": 22,
+      "motor": "PostgreSQL",
+      "tipo_query": "punto"
+    },
+    {
+      "concurrency": 15,
+      "throughput_ops_s": 1.5,
+      "p50_ms": 13988.43,
+      "p95_ms": 13988.74,
+      "p99_ms": 13988.77,
+      "errors": 0,
+      "total_ops": 15,
+      "motor": "PostgreSQL",
+      "tipo_query": "punto"
+    },
+    {
+      "concurrency": 20,
+      "throughput_ops_s": 1.5,
+      "p50_ms": 19274.98,
+      "p95_ms": 19275.44,
+      "p99_ms": 19275.65,
+      "errors": 5,
+      "total_ops": 15,
+      "motor": "PostgreSQL",
+      "tipo_query": "punto"
+    },
+    {
+      "concurrency": 30,
+      "throughput_ops_s": 1.5,
+      "p50_ms": 29623.05,
+      "p95_ms": 29623.64,
+      "p99_ms": 29623.67,
+      "errors": 15,
+      "total_ops": 15,
+      "motor": "PostgreSQL",
+      "tipo_query": "punto"
+    },
+    {
+      "concurrency": 1,
+      "throughput_ops_s": 1.3,
+      "p50_ms": 556.15,
+      "p95_ms": 1665.42,
+      "p99_ms": 2671.41,
+      "errors": 0,
+      "total_ops": 13,
+      "motor": "PostgreSQL",
+      "tipo_query": "compleja"
+    },
+    {
+      "concurrency": 5,
+      "throughput_ops_s": 4.4,
+      "p50_ms": 862.49,
+      "p95_ms": 3633.62,
+      "p99_ms": 3930.18,
+      "errors": 0,
+      "total_ops": 44,
+      "motor": "PostgreSQL",
+      "tipo_query": "compleja"
+    },
+    {
+      "concurrency": 10,
+      "throughput_ops_s": 1.9,
+      "p50_ms": 8607.75,
+      "p95_ms": 10179.84,
+      "p99_ms": 10304.39,
+      "errors": 0,
+      "total_ops": 19,
+      "motor": "PostgreSQL",
+      "tipo_query": "compleja"
+    },
+    {
+      "concurrency": 15,
+      "throughput_ops_s": 1.5,
+      "p50_ms": 14021.53,
+      "p95_ms": 14032.33,
+      "p99_ms": 14051.89,
+      "errors": 0,
+      "total_ops": 15,
+      "motor": "PostgreSQL",
+      "tipo_query": "compleja"
+    },
+    {
+      "concurrency": 20,
+      "throughput_ops_s": 1.5,
+      "p50_ms": 19196.41,
+      "p95_ms": 19196.44,
+      "p99_ms": 19196.45,
+      "errors": 5,
+      "total_ops": 15,
+      "motor": "PostgreSQL",
+      "tipo_query": "compleja"
+    },
+    {
+      "concurrency": 30,
+      "throughput_ops_s": 1.5,
+      "p50_ms": 29641.33,
+      "p95_ms": 29641.89,
+      "p99_ms": 29641.92,
+      "errors": 15,
+      "total_ops": 15,
+      "motor": "PostgreSQL",
+      "tipo_query": "compleja"
+    },
+    {
+      "concurrency": 1,
+      "throughput_ops_s": 5.8,
+      "p50_ms": 171.6,
+      "p95_ms": 172.3,
+      "p99_ms": 262.84,
+      "errors": 0,
+      "total_ops": 58,
+      "motor": "MongoDB",
+      "tipo_query": "punto"
+    },
+    {
+      "concurrency": 5,
+      "throughput_ops_s": 26.1,
+      "p50_ms": 172.11,
+      "p95_ms": 173.66,
+      "p99_ms": 1094.24,
+      "errors": 0,
+      "total_ops": 261,
+      "motor": "MongoDB",
+      "tipo_query": "punto"
+    },
+    {
+      "concurrency": 10,
+      "throughput_ops_s": 53.6,
+      "p50_ms": 172.17,
+      "p95_ms": 174.21,
+      "p99_ms": 195.37,
+      "errors": 0,
+      "total_ops": 536,
+      "motor": "MongoDB",
+      "tipo_query": "punto"
+    },
+    {
+      "concurrency": 15,
+      "throughput_ops_s": 82.5,
+      "p50_ms": 171.93,
+      "p95_ms": 175.87,
+      "p99_ms": 189.26,
+      "errors": 0,
+      "total_ops": 825,
+      "motor": "MongoDB",
+      "tipo_query": "punto"
+    },
+    {
+      "concurrency": 20,
+      "throughput_ops_s": 105.8,
+      "p50_ms": 172.13,
+      "p95_ms": 285.6,
+      "p99_ms": 311.69,
+      "errors": 0,
+      "total_ops": 1058,
+      "motor": "MongoDB",
+      "tipo_query": "punto"
+    },
+    {
+      "concurrency": 30,
+      "throughput_ops_s": 115.3,
+      "p50_ms": 172.84,
+      "p95_ms": 490.83,
+      "p99_ms": 654.69,
+      "errors": 0,
+      "total_ops": 1153,
+      "motor": "MongoDB",
+      "tipo_query": "punto"
+    },
+    {
+      "concurrency": 1,
+      "throughput_ops_s": 4.6,
+      "p50_ms": 194.57,
+      "p95_ms": 312.67,
+      "p99_ms": 387.94,
+      "errors": 0,
+      "total_ops": 46,
+      "motor": "MongoDB",
+      "tipo_query": "compleja"
+    },
+    {
+      "concurrency": 5,
+      "throughput_ops_s": 22.2,
+      "p50_ms": 198.6,
+      "p95_ms": 351.01,
+      "p99_ms": 485.63,
+      "errors": 0,
+      "total_ops": 222,
+      "motor": "MongoDB",
+      "tipo_query": "compleja"
+    },
+    {
+      "concurrency": 10,
+      "throughput_ops_s": 39.0,
+      "p50_ms": 225.04,
+      "p95_ms": 479.16,
+      "p99_ms": 610.28,
+      "errors": 0,
+      "total_ops": 390,
+      "motor": "MongoDB",
+      "tipo_query": "compleja"
+    },
+    {
+      "concurrency": 15,
+      "throughput_ops_s": 43.6,
+      "p50_ms": 272.51,
+      "p95_ms": 844.75,
+      "p99_ms": 982.49,
+      "errors": 0,
+      "total_ops": 436,
+      "motor": "MongoDB",
+      "tipo_query": "compleja"
+    },
+    {
+      "concurrency": 20,
+      "throughput_ops_s": 37.0,
+      "p50_ms": 400.05,
+      "p95_ms": 1592.95,
+      "p99_ms": 1977.49,
+      "errors": 0,
+      "total_ops": 370,
+      "motor": "MongoDB",
+      "tipo_query": "compleja"
+    },
+    {
+      "concurrency": 30,
+      "throughput_ops_s": 38.3,
+      "p50_ms": 577.51,
+      "p95_ms": 2214.09,
+      "p99_ms": 2422.83,
+      "errors": 0,
+      "total_ops": 383,
+      "motor": "MongoDB",
+      "tipo_query": "compleja"
+    }
+  ],
+  "escalabilidad": [
+    {
+      "concurrency": 10,
+      "throughput_ops_s": 1.9,
+      "p50_ms": 8645.74,
+      "p95_ms": 9867.09,
+      "p99_ms": 9994.73,
+      "errors": 0,
+      "total_ops": 19,
+      "motor": "PostgreSQL",
+      "subconjunto": "A_2016"
+    },
+    {
+      "concurrency": 10,
+      "throughput_ops_s": 57.3,
+      "p50_ms": 174.95,
+      "p95_ms": 182.47,
+      "p99_ms": 192.38,
+      "errors": 0,
+      "total_ops": 573,
+      "motor": "MongoDB",
+      "subconjunto": "A_2016"
+    },
+    {
+      "concurrency": 10,
+      "throughput_ops_s": 1.9,
+      "p50_ms": 8568.39,
+      "p95_ms": 10149.87,
+      "p99_ms": 10276.73,
+      "errors": 0,
+      "total_ops": 19,
+      "motor": "PostgreSQL",
+      "subconjunto": "B_2016_2017"
+    },
+    {
+      "concurrency": 10,
+      "throughput_ops_s": 8.2,
+      "p50_ms": 1297.3,
+      "p95_ms": 1566.23,
+      "p99_ms": 1584.93,
+      "errors": 0,
+      "total_ops": 82,
+      "motor": "MongoDB",
+      "subconjunto": "B_2016_2017"
+    },
+    {
+      "concurrency": 10,
+      "throughput_ops_s": 1.8,
+      "p50_ms": 8721.64,
+      "p95_ms": 10166.14,
+      "p99_ms": 10805.7,
+      "errors": 0,
+      "total_ops": 18,
+      "motor": "PostgreSQL",
+      "subconjunto": "C_completo"
+    },
+    {
+      "concurrency": 10,
+      "throughput_ops_s": 4.0,
+      "p50_ms": 3173.45,
+      "p95_ms": 3364.8,
+      "p99_ms": 3406.93,
+      "errors": 0,
+      "total_ops": 40,
+      "motor": "MongoDB",
+      "subconjunto": "C_completo"
+    }
+  ],
+  "puntos_quiebre": [
+    {
+      "concurrency": 5,
+      "razon": "p95 > 3x baseline (1580ms)",
+      "motor": "PostgreSQL",
+      "tipo_query": "punto"
+    },
+    {
+      "concurrency": 10,
+      "razon": "p95 > 3x baseline (4996ms)",
+      "motor": "PostgreSQL",
+      "tipo_query": "compleja"
+    },
+    {
+      "concurrency": null,
+      "razon": "sin degradacion significativa en el rango probado",
+      "motor": "MongoDB",
+      "tipo_query": "punto"
+    },
+    {
+      "concurrency": 20,
+      "razon": "p95 > 3x baseline (938ms)",
+      "motor": "MongoDB",
+      "tipo_query": "compleja"
+    }
+  ],
+  "conteos_subconjuntos": [
+    {
+      "subconjunto": "A_2016",
+      "n_orders": 638
+    },
+    {
+      "subconjunto": "B_2016_2017",
+      "n_orders": 87126
+    },
+    {
+      "subconjunto": "C_completo",
+      "n_orders": 191648
+    }
+  ],
+  "config": {
+    "concurrency_levels": [
+      1,
+      5,
+      10,
+      15,
+      20,
+      30
+    ],
+    "duration_s_per_test": 10,
+    "concurrency_fija_escalabilidad": 10
+  }
+}
