@@ -94,10 +94,19 @@ optimizacion-y-diseno-base-de-datos-v2/
 │   │   └── benchmark_comparison_20260616_000208.png
 │   ├── Documento_tecnico_Ecommify_U5.docx
 │   └── Documento_tecnico_Ecommify_U5.pdf
-└── PruebasCarga/                         ← Etapa 2: pruebas de carga, concurrencia y escalabilidad
-    ├── 05_load_testing-2.ipynb           ← Notebook 05, requiere 01-04 ya ejecutados
-    ├── Informe_Tecnico_Integral_Ecommify_APA7.docx   ← Informe consolidado (Secciones a-i)
-    └── Ecommify.pptx                     ← Presentación de resultados de carga
+├── PruebasCarga/                         ← Etapa 2: pruebas de carga, concurrencia y escalabilidad
+│   ├── 05_load_testing-2.ipynb           ← Notebook 05, requiere 01-04 ya ejecutados
+│   ├── Informe_Tecnico_Integral_Ecommify_APA7.docx   ← Informe consolidado (Secciones a-i)
+│   └── Ecommify.pptx                     ← Presentación de resultados de carga
+└── EvidenciaPruebasCarga/                ← Salida cruda del Notebook 05 (Anexo A del Informe)
+    ├── README_load_testing_20260621_011737.md        ← Metodología del run, autogenerado
+    ├── load_test_concurrencia_20260621_011737.csv    ← 24 mediciones throughput/latencia (concurrencia × motor × tipo query)
+    ├── load_test_concurrencia_20260621_011737.png    ← Figura 1: throughput y p95 vs. concurrencia
+    ├── puntos_quiebre_20260621_011737.csv             ← 4 puntos de quiebre identificados automáticamente
+    ├── conteos_subconjuntos_20260621_011737.csv      ← Conteo real de filas por subconjunto de escalabilidad
+    ├── load_test_consolidado_20260621_011737.json    ← Resultados crudos completos (concurrencia + escalabilidad + quiebres)
+    ├── load_test_escalabilidad_20260621_011737.csv   ← 6 mediciones de escalabilidad por subconjunto × motor
+    └── load_test_escalabilidad_20260621_011737.png   ← Figura 2: degradación de p95 vs. tamaño de dataset
 ```
 
 ## b. Cómo reproducir la implementación
@@ -121,7 +130,7 @@ La implementación se ejecuta en **6 pasos ordenados**. Los pasos 1-4 correspond
 | 3 | Ejecuta ETL PostgreSQL → MongoDB (`orders_summary`, `products_catalog`) | Notebook `04_etl_pg_to_mongo.ipynb`, que invoca los scripts Python de ETL | `Optimizacion/Colab/04_etl_pg_to_mongo.ipynb` → `mongodb/schema/etl/pg_to_mongo_orders_summary.py`, `pg_to_mongo_products_catalog.py` |
 | 4 | Captura evidencia `EXPLAIN ANALYZE` / `.explain()` antes y después de optimizar (índices, particionamiento, vistas materializadas) | Notebook `03_benchmarks_evidencias.ipynb` | `Optimizacion/Colab/03_benchmarks_evidencias.ipynb` → exporta a `Optimizacion/Evidencia/` |
 | 5 | **(Prerrequisito: pasos 1-4 ya ejecutados)** Corre el harness de carga único sobre PostgreSQL y MongoDB: matriz de concurrencia (1/5/10/15/20/30 clientes × punto/compleja), detección de puntos de quiebre, y escalabilidad sobre subconjuntos crecientes del dataset | Notebook `05_load_testing-2.ipynb` | `PruebasCarga/05_load_testing-2.ipynb` |
-| 6 | Analiza, interpreta y documenta los resultados crudos del paso 5 (incluye el hallazgo de saturación del connection pooler) | Lectura/edición del informe y la presentación | `PruebasCarga/Informe_Tecnico_Integral_Ecommify_APA7.docx`, `PruebasCarga/Ecommify.pptx` |
+| 6 | Analiza, interpreta y documenta los resultados crudos del paso 5 (incluye el hallazgo de saturación del connection pooler) | Lectura/edición del informe y la presentación, con base en los crudos exportados | `PruebasCarga/Informe_Tecnico_Integral_Ecommify_APA7.docx`, `PruebasCarga/Ecommify.pptx` ← `EvidenciaPruebasCarga/` |
 
 ### Rutas de scripts de setup y configuración
 
@@ -139,12 +148,13 @@ La implementación se ejecuta en **6 pasos ordenados**. Los pasos 1-4 correspond
 
 | Resultado | Ruta en el repo | Contenido |
 |---|---|---|
-| **Informe consolidado de pruebas de carga** | `PruebasCarga/Informe_Tecnico_Integral_Ecommify_APA7.docx` | Metodología, Tablas 2-12 (matriz de concurrencia, puntos de quiebre, escalabilidad, ratios comparativos), Figuras 1-2, análisis crítico CAP vs. disponibilidad bajo carga, plan de escalamiento 10×, y Anexo A con el listado exacto de archivos de evidencia generados |
+| **Informe consolidado de pruebas de carga** | `PruebasCarga/Informe_Tecnico_Integral_Ecommify_APA7.docx` | Metodología, Tablas 2-12 (matriz de concurrencia, puntos de quiebre, escalabilidad, ratios comparativos), Figuras 1-2, análisis crítico CAP vs. disponibilidad bajo carga, plan de escalamiento 10×, y Anexo A con el listado exacto de archivos de evidencia |
 | **Presentación de resultados** | `PruebasCarga/Ecommify.pptx` | Síntesis ejecutiva de la Etapa 2 |
-| **Notebook fuente (reproducible)** | `PruebasCarga/05_load_testing-2.ipynb` | Al re-ejecutarse, regenera las métricas crudas y exporta automáticamente CSV/JSON/PNG a Google Drive (`/content/drive/MyDrive/Colab Notebooks/MaestriaArch-OBD-U5/evidencias/`) |
+| **Notebook fuente (reproducible)** | `PruebasCarga/05_load_testing-2.ipynb` | Al re-ejecutarse, regenera las métricas crudas |
+| **Evidencia cruda consolidada de la corrida (Anexo A)** | `EvidenciaPruebasCarga/` | `load_test_concurrencia_20260621_011737.csv` (matriz de concurrencia), `load_test_escalabilidad_20260621_011737.csv` (escalabilidad por subconjunto), `puntos_quiebre_20260621_011737.csv` (puntos de quiebre), `conteos_subconjuntos_20260621_011737.csv` (conteo real de filas), `load_test_consolidado_20260621_011737.json` (resultados crudos completos), `load_test_concurrencia_20260621_011737.png` / `load_test_escalabilidad_20260621_011737.png` (Figuras 1 y 2), `README_load_testing_20260621_011737.md` (metodología del run) |
 | Evidencia de optimización Etapa 1 (`EXPLAIN ANALYZE` antes/después, no es la prueba de carga) | `Optimizacion/Evidencia/` (`pg_benchmarks_*.csv`, `mdb_benchmarks_*.csv`, `explain_plans_*.json`, `benchmark_comparison_*.png`) | Ver `Optimizacion/README.md` para la interpretación |
 
-> **Nota sobre los archivos crudos de la Etapa 2:** el notebook `05_load_testing-2.ipynb` exporta los CSV/JSON crudos (`load_test_concurrencia_*.csv`, `load_test_escalabilidad_*.csv`, `puntos_quiebre_*.csv`, `conteos_subconjuntos_*.csv`, `load_test_consolidado_*.json`) y las gráficas (`load_test_concurrencia_*.png`, `load_test_escalabilidad_*.png`) hacia Google Drive, no hacia este repositorio. Los resultados ya analizados e interpretados de esa corrida están consolidados en el informe (`Informe_Tecnico_Integral_Ecommify_APA7.docx`, Anexo A). Si el equipo decide versionar los crudos en el repo, la convención sugerida es `PruebasCarga/Evidencia/`.
+> **Nota:** el notebook `05_load_testing-2.ipynb` exporta sus resultados, por defecto, a Google Drive (`/content/drive/MyDrive/Colab Notebooks/MaestriaArch-OBD-U5/evidencias/`). El equipo descargó esa corrida (timestamp `20260621_011737`, la misma referenciada en el Anexo A del informe) y la versionó en el repositorio bajo `EvidenciaPruebasCarga/`, por lo que estos archivos ya son reproducibles y consultables directamente desde git, sin depender de Drive. Si se ejecuta una nueva corrida del notebook, se recomienda copiar sus salidas a `EvidenciaPruebasCarga/` siguiendo la misma convención de nombres (`*_<timestamp>.*`).
 
 ## Resumen de decisiones arquitectónicas
 
@@ -174,6 +184,7 @@ La implementación se ejecuta en **6 pasos ordenados**. Los pasos 1-4 correspond
 | Documento Técnico de Optimización | `Optimizacion/Documento_tecnico_Ecommify_U5.pdf` | Explicación técnica de la implementación y optimización, Etapa 1 |
 | **Informe Técnico Integral (Proyecto Final)** | `PruebasCarga/Informe_Tecnico_Integral_Ecommify_APA7.docx` | Entregable evaluativo completo (Secciones a-i): arquitectura, evaluación de rendimiento, análisis crítico y recomendaciones, Etapa 2 |
 | **Presentación de pruebas de carga** | `PruebasCarga/Ecommify.pptx` | Síntesis ejecutiva de los resultados de carga |
+| **Evidencia cruda de pruebas de carga (Anexo A)** | `EvidenciaPruebasCarga/` | CSV/JSON/PNG de la corrida `20260621_011737` + README de metodología, base empírica del Informe Técnico Integral |
 
 ## Referencias
 
